@@ -1,4 +1,4 @@
-package java_002_Var;
+package com.callor.var;
 
 public class VarA {
 	
