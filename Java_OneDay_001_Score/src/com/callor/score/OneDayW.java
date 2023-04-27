@@ -32,7 +32,7 @@ public class OneDayW {
 
 		// 라벨 출력부분
 		System.out.println("=".repeat(65));
-		System.out.println("*" + "한울 고교 성적 리스트" + "*");
+		System.out.println("\t\t   " + "*" + "한울 고교 성적 리스트" + "*");
 		System.out.println("=".repeat(65));
 		System.out.println("학번\t국어\t영어\t수학\t음악\t미술\t총점\t평균");
 		System.out.println("-".repeat(65));
@@ -68,11 +68,15 @@ public class OneDayW {
 			avgMusic += scores[i].scMusic;
 			avgArt += scores[i].scArt;
 		}
+		
+		int totalAvg = 0;
+		totalAvg = avgKor + avgEng + avgMath + avgMusic + avgArt;
 
+		
 		// 각 과목별 총점,전체 총점 출력 & 각 과목의 평균, 평균의 평균 출력.
 		System.out.println("-".repeat(65));
 		scoreService.scoreTotalPrint(totalKor, totalEng, totalMath, totalMusic, totalArt);
-		scoreService.scoreTotalAvg(avgKor, avgEng, avgMath, avgMusic, avgArt);
+		scoreService.scoreTotalAvg(avgKor, avgEng, avgMath, avgMusic, avgArt, totalAvg);
 		System.out.println("=".repeat(65));
 
 	}

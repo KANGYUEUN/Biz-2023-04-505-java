@@ -38,18 +38,17 @@ public class ScoreService {
 		// System.out.printf("%5.2f\n",(float)/ scKor + scEng + scMath + scMusic + scArt);
 	}
 	
-	public void scoreTotalAvg(int scKor, int scEng, int scMath, int scMusic, int scArt ) {
-		int scoreTotalAvg = 0;
+	public void scoreTotalAvg(int scKor, int scEng, int scMath, int scMusic, int scArt, int totalAvg ) {
 		
-				
-		System.out.printf("평균" + "\t");
+		System.out.printf("평균"+"\t");
 		System.out.printf("%5.2f\t",(float)scKor/10);
 		System.out.printf("%5.2f\t",(float)scEng/10);
 		System.out.printf("%5.2f\t",(float)scMath/10);
 		System.out.printf("%5.2f\t",(float)scMusic/10);
 		System.out.printf("%5.2f\t",(float)scArt/10);
 		System.out.printf("\t");
-		System.out.printf("%5.2f\t",(float)scoreTotalAvg/5);
+		
+		System.out.printf("%5.2f\t",(float)totalAvg / 5);
 		System.out.println();
 		
 	}
