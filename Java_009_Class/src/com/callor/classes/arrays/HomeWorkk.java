@@ -5,15 +5,34 @@ import com.callor.classes.service.ScoreServiceA;
 
 public class HomeWorkk {
 	public static void main(String[] args) {
+		
+		// 객체 변수 생성 : ScoreDto score = new ScoreDro();
+		// 생성 = 선언 + 초기화 + 사용할 준비가 된상태이다.
+		// ScoreDto 클래스를 사용하여 score 객체 변수 선언
+		// ScoreDto ()  생성자 method 사용해서 객체를 초기화 (new).
+		
+		
 		// ScoreDto[] type 요소 10개를 갖는 배열 선언
+		// scores 배열은 score 변수를 10개 요소로 갖는다.
 		ScoreDto[] scores = new ScoreDto[10];
 
 		// class type 의 배열 요소 전체를 객체 요소로 생성하기
+		// class type 으로 선언된 배열은 반드시 개별 요소를 초기화 시키는 절차가 필요하다.
+		// scores  배열(요소) 개수 만큼 for() 반복문을 통해 
+		// 개별 요소들을 모두 초기화 한다.
+		// 모두 초기화 되어 사용할 준비가 완료된다.
 		for (int i = 0; i < scores.length; i++) {
 			scores[i] = new ScoreDto();
 		}
-
+		
+		
+		// 학번, 이름, 과목점수를 각 배열의 요소에 세팅
+		// ScoreServiceA 선언 & 초기화
+		// ScoreServiceA 클래스에 정의된 점수생성 method
+		// 개별 성적출력 method 를 사용하기 위해서 
+		// 객체(변수)로 생성하기.
 		ScoreServiceA scoreServiceA = new ScoreServiceA();
+		
 		// 학번입력부분
 		scores[0].stNum = "0001";
 		scores[1].stNum = "0002";
@@ -38,7 +57,7 @@ public class HomeWorkk {
 		scores[8].stName = "박철수";
 		scores[9].stName = "한동후";
 
-		// 국어,영어,수학 점수 입력 부분
+		// 국어,영어,수학 점수 입력 부분 (임의의 점수 이기때문에 사용가능)
 		for (int i = 0; i < scores.length; i++) {
 			scores[i].scKor = scoreServiceA.getScore();
 			scores[i].scEng = scoreServiceA.getScore();

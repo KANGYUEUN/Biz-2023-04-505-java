@@ -22,6 +22,7 @@ public class ArrayD {
 		}
 		
 		ScoreServiceA scoreServiceA = new ScoreServiceA();
+		
 		scores[0].stNum = "0001";
 		scores[0].stName = "홍길동";
 		scores[0].scKor = scoreServiceA.getScore();
