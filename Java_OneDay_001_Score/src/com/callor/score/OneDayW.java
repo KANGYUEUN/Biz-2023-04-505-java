@@ -71,6 +71,7 @@ public class OneDayW {
 		
 		int totalAvg = 0;
 		totalAvg = avgKor + avgEng + avgMath + avgMusic + avgArt;
+		
 
 		
 		// 각 과목별 총점,전체 총점 출력 & 각 과목의 평균, 평균의 평균 출력.

@@ -40,7 +40,7 @@ public class ScoreService {
 	
 	public void scoreTotalAvg(int scKor, int scEng, int scMath, int scMusic, int scArt, int totalAvg ) {
 		
-		System.out.printf("평균"+"\t");
+		System.out.print("평균"+"\t");
 		System.out.printf("%5.2f\t",(float)scKor/10);
 		System.out.printf("%5.2f\t",(float)scEng/10);
 		System.out.printf("%5.2f\t",(float)scMath/10);
