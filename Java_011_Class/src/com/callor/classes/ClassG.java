@@ -26,14 +26,14 @@ public class ClassG {
 			num1 = scan.nextInt();
 
 			// while (true) 무한 반복 종료 조건 설정
-			if (num1 < 0) {
+			if (num1 == -1) {
 				break;
 			}
 
 			System.out.print("정수 2 >> ");
 			num2 = scan.nextInt();
 
-			if (num2 < 0) {
+			if (num2 == -1 ) {
 				break;
 			}
 			System.out.printf("%d + %d = %d\n", num1, num2, num1 + num2);
