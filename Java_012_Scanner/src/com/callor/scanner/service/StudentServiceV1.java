@@ -34,7 +34,6 @@ public class StudentServiceV1 {
 			try {
 				intGrade = Integer.valueOf(stGrade);
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println("학년은 정수로만 입력하시오 ");
 				continue;
 			}
