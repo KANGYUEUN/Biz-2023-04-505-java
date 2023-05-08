@@ -27,6 +27,7 @@ public class ScannerFA {
 			while (true) {
 				
 				System.out.println(PublicConfig.dLine(100));
+				System.out.println(rndNum);
 				System.out.println("정수 입력(QUIT : 종료) >> ");
 				String strNum = scan.nextLine();
 				if (strNum.equals("OUIT")) {
