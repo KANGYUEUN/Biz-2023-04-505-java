@@ -23,6 +23,7 @@ public class ScoreServiceV1 {
 
 			// 학번을 001,002형식으로 문자열 만들기
 			String stNum = String.format("%03d", i + 1);
+			
 			int scKor = (int) (Math.random() * 50) + 51;
 			int scMath = (int) (Math.random() * 50) + 51;
 			int scMusic = (int) (Math.random() * 50) + 51;
@@ -31,7 +32,9 @@ public class ScoreServiceV1 {
 			/*
 			 * " List type 의 data " 배열에서는 먼저 배열선언후 배열 초기화, 각 요소의 데이터 저장이 이루어 졌으나
 			 * 
-			 * List type 에서는 1. 비어 있는 List type 을 생성 2. Dto 객체변수를 생성하고 3. Dto 각 변수에 값을
+			 * List type 에서는 
+			 * 1. 비어 있는 List type 을 생성 
+			 * 2. Dto 객체변수를 생성하고 3. Dto 각 변수에 값을
 			 * setting(setter) 4. List 에 Dto 를 add.
 			 * 
 			 */
