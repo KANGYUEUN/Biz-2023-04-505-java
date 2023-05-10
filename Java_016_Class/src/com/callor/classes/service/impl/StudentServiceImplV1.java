@@ -25,9 +25,11 @@ public class StudentServiceImplV1 implements StudentService {
 			// 문자열 변수에 저장된 문자열을 ',' 로 다시 분해 
 			// student 배열에 분해한것을 저장하기 
 			String[] student = StdData.STUDENT[index].split(",");
+			
 			// StudentDto class type 의 StdDto 객체를 생성
 			// StudentDto  type 의 객체를 생성
 			StudentDto stdDto = new StudentDto();
+			
 			// student 배열의 각 요소를 StudentDto type 객체 요소에 저장하기
 			stdDto.stNum = student[StdData.ST_NUM];
 			stdDto.stName = student[StdData.ST_NAME];
