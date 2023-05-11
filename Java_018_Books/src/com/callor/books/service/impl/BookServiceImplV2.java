@@ -95,7 +95,6 @@ public class BookServiceImplV2 implements BookService {
 			System.out.printf("%s\t", book.getbPublishData());
 			System.out.printf("%d\t", book.getbPages());
 			System.out.printf("%d\n", book.getbPrice());
-
 		}
 		System.out.println(Utils.sLine(100));
 	}

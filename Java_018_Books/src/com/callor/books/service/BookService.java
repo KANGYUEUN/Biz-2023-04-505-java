@@ -31,5 +31,8 @@ public interface BookService {
 	
 	public void updateBook(BookDto bookDto);
 	public void deleteBook(String isbn);
+	public static void main(String[] args) {
+
+	}
 	
 }
