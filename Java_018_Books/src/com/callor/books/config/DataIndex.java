@@ -20,4 +20,13 @@ public class DataIndex {
 	}
 	
 	
+	public static class PUBLISER {
+		
+		public static final int COED = 0;
+		public static final int NAME = 1;
+		public static final int CEO = 2;
+		public static final int TEL = 3;
+		public static final int ADDRESS = 4;
+		
+	}
 }
