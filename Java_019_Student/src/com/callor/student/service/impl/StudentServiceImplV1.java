@@ -23,17 +23,32 @@ public class StudentServiceImplV1 implements StudentService {
 	 * 아니고 V1 클래스에서 임의로 생성한 메서드 이다.
 	 */
 	public void insertStudent() {
-
+	
 		while (true) {
 
 			System.out.println(Line.dLine(60));
 			System.out.println("학생정보 추가 종료하려면 'QUIT' 입력");
 			System.out.println(Line.sLine(60));
-
-			System.out.printf("학번 >> ");
-			String stNum = scan.nextLine();
-			if (stNum.equals("QUIT")) break;
+			
+			String stNum = "";
+			while (true) {
+				System.out.printf("학번(정수) >> ");
+				stNum = scan.nextLine();
+				if (stNum.equals("QUIT")) break;
 				
+				try {
+					int intNum = Integer.valueOf(stNum);
+					stNum = String.format("%04d", intNum);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("학번은 정수로 입력 하세요");
+					continue;
+				}
+				break;
+			}
+				
+			if(stNum.equals("QUIT")) break;
+			
 			System.out.printf("이름 >> ");
 			String stName = scan.nextLine();
 			if (stName.equals("QUIT")) break;
@@ -78,12 +93,12 @@ public class StudentServiceImplV1 implements StudentService {
 			stdList.add(stDto);
 		}
 		System.out.printf("학생정보 입력 종료 !");
+		// 현재 입력한 학생정보의 stdList 가 모두 만들어진 상태 
 	}
 
 	@Override
 	public void loadStudent() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -92,7 +107,7 @@ public class StudentServiceImplV1 implements StudentService {
 		System.out.println(Line.dLine(100));
 		System.out.println("대한 고교 학생 리스트");
 		System.out.println(Line.sLine(100));
-		System.out.println("학번\t이름\t학과\t\t학년\t전화번호");
+		System.out.println("학번\t이름\t학과\t학년\t전화번호");
 		System.out.println(Line.sLine(100));
 
 		if (stdList == null || stdList.size() < 1) {

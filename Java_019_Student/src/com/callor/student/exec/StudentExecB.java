@@ -3,7 +3,7 @@ package com.callor.student.exec;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class StudentexecB {
+public class StudentExecB {
 
 	/*
 	 * 학생정보를 키보드로 부터 입력 받아 StudentDto 객체에 저장하고 
