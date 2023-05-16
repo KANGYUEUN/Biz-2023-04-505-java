@@ -1,4 +1,4 @@
-package com.ny.aenean.config;
+package com.ny.aenean.cardconfig;
 
 public class InputConfig {
 	public class HitStay{
@@ -29,6 +29,7 @@ public class InputConfig {
 		public static final int WINNERDEALER = 16;	// 결과 : 딜러 승리
 		public static final int GAMEDEALING = 17;	// 초반 2장씩 나눠주고 있는 상태.
 		public static final int GAMEPUSH = 18;		// 결과 : 무승부
+		public static final int DISTRIBUTE = 19;
 		
 		public static final int PLAYERPROMPT = 51;		// 플레이어의 HitStay를 대기
 		public static final int PLAYERHIT = 52;		// 플레이어어가 HIT를 고른 상태

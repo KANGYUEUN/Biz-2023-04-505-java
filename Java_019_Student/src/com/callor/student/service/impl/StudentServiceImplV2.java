@@ -20,13 +20,12 @@ import com.callor.student.utils.Line;
 public class StudentServiceImplV2 extends StudentServiceImplV1 {
 
 	protected StudentDto inputStudent() {
-		StudentDto stDto = new StudentDto();
-
 		System.out.println(Line.dLine(60));
 		System.out.println("학생정보 입력, 종료하려면 QUIT 입력");
 		System.out.println(Line.sLine(60));
 
 		String stNum = "";
+		StudentDto stDto = new StudentDto();
 
 		while (true) {
 			System.out.printf("학번(정수) >> ");
@@ -64,24 +63,19 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 		if (stName.equals("")) { // 이름을 입력 하지 않은 경우 신규 이면 이름을 입력 해라
 			stName = stDto.stName;
 		}
-		if (stName.equals("QUIT"))
-			return null;
+		if (stName.equals("QUIT")) return null;
 
 		System.out.printf("학과(%s) >> ", stDto.stDept == null ? "신규" : stDto.stDept);
 		String stDept = scan.nextLine();
-		if (stDept.equals("QUIT"))
-			return null;
+		if (stDept.equals("QUIT")) return null;
 		if (stDept.equals("")) {
 			stDept = stDto.stDept;
 		}
-
 		int intGrade = 0;
 		while (true) {
 			System.out.printf("학년(%d) >> ", stDto.stGrade == 0 ? 0 : stDto.stGrade);
 			String strGrade = scan.nextLine();
-			if (strGrade.equals("QUIT"))
-				break;
-
+			if (strGrade.equals("QUIT")) break;
 			try {
 				if (stDto.stGrade != 0 && strGrade.equals("")) {
 					intGrade = stDto.stGrade;
@@ -98,13 +92,10 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 			}
 			break;
 		}
-		if (intGrade == 0)
-			return null;
-
+		if (intGrade == 0) return null;
 		System.out.printf("전화번호(%s) >> ", stDto.stTel == null ? "신규" : stDto.stTel);
 		String stTel = scan.nextLine();
-		if (stTel.equals("QUIT"))
-			return null;
+		if (stTel.equals("QUIT")) return null;
 		if (stTel.equals("")) {
 			stTel = stDto.stTel;
 		}
@@ -123,8 +114,7 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 		// super.insertStudent();
 		while (true) {
 			StudentDto stDto = this.inputStudent();
-			if (stDto == null)
-				break;
+			if (stDto == null) break;
 			int index = 0;
 			for (index = 0; index < stdList.size(); index++) {
 				// inputStudent 가 return 한 dto 와
@@ -138,7 +128,6 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 				stdList.add(stDto);
 			}
 		}
-
 		// 나머지 처리
 		System.out.println("여기는 V2");
 		OutputStream os = null;
@@ -214,7 +203,6 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 		int index = 0;
 		for (index = 0; index < stdList.size(); index ++ ) {
 			if(stdList.get(index).stNum.equals(stNum)) {
-
 				System.out.println(Line.dLine(60));
 				System.out.println(stdList.get(index));
 				System.out.println(Line.sLine(60));
@@ -222,7 +210,6 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 			}
 		}
 		if(index < stdList.size()) {
-
 			System.out.println("학생정보를 삭제 할까요? ( Y / N )");
 			String yesNo = scan.nextLine();
 			if(yesNo.equals("Y")) {

@@ -1,4 +1,4 @@
-package com.ny.aenean.config;
+package com.ny.aenean.cardconfig;
 
 public class CardConfig {
 	public class ViewColor{
