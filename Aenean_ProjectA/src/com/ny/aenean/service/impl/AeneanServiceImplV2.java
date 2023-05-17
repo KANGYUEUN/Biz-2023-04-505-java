@@ -55,8 +55,7 @@ public class AeneanServiceImplV2 implements AeneanService{
 			setGame();
 			if(bjDto.getGameState() == GameState.MAIN) {			// 메인화면
 				processMain();
-			}else 
-			if(bjDto.getGameState() == GameState.GAMEREADY) {		// 카드 나눠주기 전
+			}else if(bjDto.getGameState() == GameState.GAMEREADY) {		// 카드 나눠주기 전
 				processGameReady();
 			}else if(bjDto.getGameState() == GameState.DISTRIBUTE) {	// 카드 2장씩 나눠주기
 				processGameDistibute();

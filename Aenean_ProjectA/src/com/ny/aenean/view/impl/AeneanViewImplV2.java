@@ -145,7 +145,8 @@ public class AeneanViewImplV2 implements AeneanView {
 		setMoreImg(secImg, getPlayerImg()); // 플레이어 카드 이미지
 		if(bjDto.isBustPlayer()) setMoreImg(secImg, getBustImg(bjDto.getPlayer()));
 		// 게임 타이틀
-
+		
+		
 		// 화면 클리어
 		clearScreen();
 		// 카드 출력
