@@ -17,12 +17,12 @@ import com.callor.bank.utils.Config;
 import com.callor.bank.utils.Index;
 import com.callor.bank.utils.Line;
 
-public class ByerServiceImplV1A implements BuyerService {
+public class BuyerServiceImplV1A implements BuyerService {
 
 	protected Scanner scan;
 	protected List<BuyerDto> buyerList;
 
-	public ByerServiceImplV1A() {
+	public BuyerServiceImplV1A() {
 		buyerList = new ArrayList<>();
 		scan = new Scanner(System.in);
 	}
@@ -57,10 +57,19 @@ public class ByerServiceImplV1A implements BuyerService {
 		scan.close();
 
 	}
-
+	// 고객 Id 를 전달받아 
 	@Override
 	public BuyerDto getBuyer(String buId) {
-		// TODO Auto-generated method stub
+		
+		if(buyerList.isEmpty()) {
+			loadBuyer();
+		}
+		for(BuyerDto dto : buyerList ) {
+			if(dto.buid.equals(buId)) {
+				return dto;
+			}
+		}
+		
 		return null;
 	}
 

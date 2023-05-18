@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.ny.aenean.cardconfig.InputConfig.GameState;
 import com.ny.aenean.cardconfig.InputConfig.HitStay;
+import com.ny.aenean.models.BlackJackDto;
 import com.ny.aenean.service.AeneanInputService;
 
 public class AeneanInputServiceImplV2 implements AeneanInputService{
@@ -47,7 +48,7 @@ public class AeneanInputServiceImplV2 implements AeneanInputService{
 		if(gameState == GameState.GAMEREADY) {
 			System.out.print("\t 카드를 딜링하려면 Enter키를 누르세요. ");
 			scan.nextLine();
-			return GameState.DISTRIBUTE;
+			return GameState.DISTRIBUTE; // Bet
 		}else if(gameState == GameState.WINNERDEALER ||
 				gameState == GameState.WINNERPLAERY ||
 				gameState == GameState.GAMEPUSH) {
@@ -55,6 +56,12 @@ public class AeneanInputServiceImplV2 implements AeneanInputService{
 			scan.nextLine();
 			return GameState.GAMESTAND;
 		}
+		return 0;
+	}
+
+	@Override
+	public int scanNumber(BlackJackDto bjDt) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

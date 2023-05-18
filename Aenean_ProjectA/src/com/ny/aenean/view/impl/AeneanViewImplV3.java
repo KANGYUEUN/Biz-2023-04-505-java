@@ -13,9 +13,10 @@ import com.ny.aenean.models.DealerDto;
 import com.ny.aenean.models.DeckDto;
 import com.ny.aenean.models.ISuperDto;
 import com.ny.aenean.models.PlayerDto;
+import com.ny.aenean.models.ScoreDto;
 import com.ny.aenean.view.AeneanView;
 
-public class AeneanViewImplV2 implements AeneanView {
+public class AeneanViewImplV3 implements AeneanView {
 	BlackJackDto bjDto;
 
 	@Override
@@ -29,9 +30,11 @@ public class AeneanViewImplV2 implements AeneanView {
 		// GameState의 상황은 InputConfig.GameState의 주석을 참고.
 		if (bjDto.getGameState() == GameState.MAIN) {
 			printGameMain();
-		} else if (bjDto.getGameState() == GameState.GAMEREADY) {	
+		} else if (bjDto.getGameState() == GameState.GAMEREADY) {
 			printGamePlaying();
-		} else if (bjDto.getGameState() == GameState.DISTRIBUTE) {	// GameDealing == Distribute
+		} else if (bjDto.getGameState() == GameState.BETTING) {
+			printGamePlaying();
+		} else if (bjDto.getGameState() == GameState.DISTRIBUTE) { // GameDealing == Distribute
 			printGamePlaying();
 		} else if (bjDto.getGameState() == GameState.PLAYERPROMPT) {
 			printGamePlaying();
@@ -40,6 +43,7 @@ public class AeneanViewImplV2 implements AeneanView {
 		} else if (bjDto.getGameState() == GameState.DEALERISBUST || bjDto.getGameState() == GameState.PLAYERISBUST) {
 			printGamePlaying();
 		} else if (bjDto.getGameState() == GameState.WINNERDEALER || bjDto.getGameState() == GameState.WINNERPLAERY
+				|| bjDto.getGameState() == GameState.PLAYERBLACKJACK 
 				|| bjDto.getGameState() == GameState.GAMEPUSH) {
 			printGamePlaying();
 		}
@@ -130,7 +134,7 @@ public class AeneanViewImplV2 implements AeneanView {
 		String[] firImg = { "", "", "" };
 		String[] secImg = { "", "", "" };
 
-		//================================================================
+		// ================================================================
 		// 출력 데이터 셋팅 및 로딩
 		// 위에
 		setMoreImg(topImg, makeOneTab(6));
@@ -139,15 +143,17 @@ public class AeneanViewImplV2 implements AeneanView {
 		// 카드 첫줄...
 		setMoreImg(firImg, makeNameImg("Dealer")); // 딜러라는 표시와 공백
 		setMoreImg(firImg, getDealerImg()); // 딜러카드 이미지
-		if(bjDto.isBustDealer()) setMoreImg(firImg, getBustImg(bjDto.getDealer()));
+		if (bjDto.isBustDealer())
+			setMoreImg(firImg, getBustImg(bjDto.getDealer()));
 
 		// 카드 두번째줄...
 		setMoreImg(secImg, makeNameImg("Player")); // 플레이어라는 표시와 공백
 		setMoreImg(secImg, getPlayerImg()); // 플레이어 카드 이미지
-		if(bjDto.isBustPlayer()) setMoreImg(secImg, getBustImg(bjDto.getPlayer()));
+		if (bjDto.isBustPlayer())
+			setMoreImg(secImg, getBustImg(bjDto.getPlayer()));
 		// 게임 타이틀
 
-		//=================================================================
+		// =================================================================
 		// 화면 클리어
 		clearScreen();
 		// 카드 출력
@@ -158,13 +164,27 @@ public class AeneanViewImplV2 implements AeneanView {
 		// 테이블 끝 표현
 		System.out.println("─".repeat(90));
 		// -------------------
+		
+		// 베팅값 출력
+		printBetState();
+		System.out.println("─".repeat(90));
 		// 게임결과 표현
 		if (bjDto.getGameState() == GameState.WINNERDEALER || bjDto.getGameState() == GameState.WINNERPLAERY
+				|| bjDto.getGameState() == GameState.PLAYERBLACKJACK 
 				|| bjDto.getGameState() == GameState.GAMEPUSH) {
-			
+
 			printWinMessage();
 		}
 
+	}
+	private void printBetState() {
+		ScoreDto scDto = bjDto.getScoreDto();
+		int cash = scDto.getPlayerCash();
+		int bet = scDto.getNowBet();
+		int mul = scDto.getMul();
+		int accWin = scDto.getAccWin();
+		// System.out.printf("%d\t" ,"(%d)%d\t" , "%d\t",cash,mul,bet,accWin);
+		System.out.printf("현재금액 : %d\t 배팅금액(x%d) : %d\t 누적금액 : %d\n",cash,mul,bet,accWin);
 	}
 
 	private String[] getBustImg(ISuperDto user) {
@@ -192,6 +212,12 @@ public class AeneanViewImplV2 implements AeneanView {
 		} else if (gameState == GameState.GAMEPUSH) {
 			str += ViewColor.GREEN;
 			str += "게임이 Push 되었습니다.";
+			str += ViewColor.END;
+		} else if (gameState == GameState.PLAYERBLACKJACK) {
+			str += ViewColor.YELLOW;
+			str += "[Player] 가 ";
+			str += ViewColor.RED;
+			str += "BlakJeck";
 			str += ViewColor.END;
 		}
 		try {

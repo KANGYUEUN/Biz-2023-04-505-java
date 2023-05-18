@@ -9,12 +9,12 @@ import java.util.Scanner;
 import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.BuyerService;
 
-public class ByerServiceImplV1 implements BuyerService {
+public class BuyerServiceImplV1 implements BuyerService {
 
 	protected Scanner scan;
 	protected List<BuyerDto> buyerList;
 
-	public ByerServiceImplV1() {
+	public BuyerServiceImplV1() {
 		buyerList = new ArrayList<>();
 		scan = new Scanner(System.in);
 	}
