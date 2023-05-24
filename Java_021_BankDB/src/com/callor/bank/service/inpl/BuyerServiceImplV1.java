@@ -40,7 +40,7 @@ public class BuyerServiceImplV1 implements BuyerService{
 	
 	@Override
 	public List<BuyerDto> selectAll() {
-		List<BuyerDto> buyerList = new ArrayList<>();
+		List<BuyerDto> buyerList = new ArrayList<>(); // List 가 쌓이는것을 방지 
 		String sql = " SELECT "
 				+ " buid, buname, butel, buaddr, bubirth, bujob "
 				+ " FROM tbl_buyer "
@@ -72,7 +72,7 @@ public class BuyerServiceImplV1 implements BuyerService{
 	 * SQL  문이 DELETE 와 같은 명령이라면 TABLE 의 모든 데이터가 삭제되는 명령이 실행됨
 	 *    + " WHERE buid = " + id; 쓰면안됨
 	 *    
-	 *    => SQL Injection 공격이라고 한다.
+	 *    => ' SQL Injection 공격 ' 이라고 한다.
 	 */
 	
 
@@ -116,12 +116,8 @@ public class BuyerServiceImplV1 implements BuyerService{
 			int result =  pStr.executeUpdate();
 			return result;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		return 0;
 	}
 
