@@ -70,7 +70,7 @@ public class DBExecC {
 			// 이때 더이상 읽을 데이터가 없으면 next() 는 'false' return
 			
 			List<BuyerDto> buyerList = new ArrayList<>();
-			// 컴퓨터에서 사용할수 있도록 List 로 만듬 
+			// 컴퓨터에서 사용할수 있도록 List 로 만듬  
 			while(result.next()) { 
 				BuyerDto buyerDto = new BuyerDto();
 				buyerDto.buId = result.getString(DBContract.BUYER.BUID);	

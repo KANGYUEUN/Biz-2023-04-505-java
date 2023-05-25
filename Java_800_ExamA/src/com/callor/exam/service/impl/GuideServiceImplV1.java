@@ -14,15 +14,11 @@ public class GuideServiceImplV1 implements GuideService{
 	
 	// 객체에 final 키워드를 부착하면 반드시 생성자에서 생성해줘야 햔다.
 	protected final List<GuideDto> gdList;
-	
 	public GuideServiceImplV1() {
 		this.gdList = new ArrayList<>();
 	}
-	
-	
 	@Override
 	public void loadGuide() {
-
 		String guideFile = "src/com/callor/exam/guide.txt";
 		InputStream is = null;
 		Scanner scan = null;
@@ -30,7 +26,6 @@ public class GuideServiceImplV1 implements GuideService{
 		try {
 			is = new FileInputStream(guideFile);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		scan = new Scanner(is);

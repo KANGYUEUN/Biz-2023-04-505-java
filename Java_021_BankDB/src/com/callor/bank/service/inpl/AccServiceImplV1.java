@@ -129,7 +129,11 @@ public class AccServiceImplV1 implements AccService {
 			pStr = dbConn.prepareStatement(sql);
 			pStr.setString(1, date);
 			ResultSet result = pStr.executeQuery();
-			if(result.next()) return result.getString(1);
+			if(result.next()) {
+				String maxNum = result.getString(1); // 오늘 날짜 오류 해결코드 
+				if(maxNum == null ) return "0";
+				else return maxNum;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,11 +159,34 @@ public class AccServiceImplV1 implements AccService {
 		}
 		return 0;
 	}
-
+	
+	/*
+	 * 계좌정보 전체(또는 부분) 을 update 하는 method
+	 * SQL 을 보면 전체 칼럼을 모두 업뎃 하고 있다.
+	 * Update() 를 호출 하는 곳에서는 
+	 * 반드시 AccDto 객체를 잘 관리 해야 한다.
+	 * 		변경할 칼럼의 데이터만 변경하고 
+	 *		 그렇지 않을(변경하지않을) 칼럼은 원래 값을 그대로 유지한다.
+	 */
 	@Override
 	public int update(AccDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = " UPDATE tbl_acc "
+				+ " SET acBuid = ?, "
+				+ " acDiv = ?, "
+				+ " acBalance = ?, "
+				+ " WHERE acNum = ? ";
+		try {
+			PreparedStatement pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, dto.acBuId);
+			pStr.setString(2, dto.acDiv);
+			pStr.setInt(3, dto.acBalance);
+			pStr.setString(4, dto.acNum);
+			return pStr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;		
 	}
 
 	@Override

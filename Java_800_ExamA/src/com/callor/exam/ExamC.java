@@ -17,7 +17,7 @@ public class ExamC {
 		List<Integer> rndList = new ArrayList<>();
 
 		for (int i = 0; i < 30; i++) {
-			int num = (int) (Math.random() * 51) + 50;
+			int num = (int) (Math.random() * 50) + 51;
 			rndList.add(null);
 		}
 		int count = 0;

@@ -1,6 +1,7 @@
 package com.callor.bank.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 import com.callor.bank.config.BankInfo;
 import com.callor.bank.config.DBContract;
 import com.callor.bank.models.AccDto;
+import com.callor.bank.models.AccListDto;
 import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.inpl.AccServiceImplV1;
 import com.callor.bank.service.inpl.BuyerServiceImplV1;
@@ -16,7 +18,6 @@ import com.callor.bank.utils.Line;
 public class BankService {
 
 	protected final Scanner scan;
-
 	protected List<BuyerDto> buyerList;
 	protected final BuyerService buyerService;
 	protected final AccService accService;
@@ -28,14 +29,12 @@ public class BankService {
 	}
 
 	public void printBuyerList() {
-
 		buyerList = buyerService.selectAll();
 		System.out.println("=".repeat(100));
 		System.out.println("대한은행 고객 리스트");
 		System.out.println("=".repeat(100));
 		System.out.println("ID\t이름\t전화번호\t주소\t생년월일\t\t직업");
 		System.out.println("-".repeat(100));
-
 		for (BuyerDto buyerDto : buyerList) {
 			System.out.printf("%s\t", buyerDto.buId);
 			System.out.printf("%s\t", buyerDto.buName);
@@ -52,7 +51,6 @@ public class BankService {
 		System.out.println("조회 하고자 하는 고객 ID 입력");
 		System.out.print("ID >> ");
 		String strId = scan.nextLine();
-
 		BuyerDto buyerDto = buyerService.findById(strId);
 		if (buyerDto == null) {
 			System.out.println("조회한 고객 ID 는 없는 데이터 이다 ");
@@ -65,21 +63,16 @@ public class BankService {
 		System.out.println("=".repeat(100));
 		System.out.println("고객정보 등록");
 		System.out.println("=".repeat(100));
-
 		System.out.print("고객 ID >> ");
 		String strBuId = scan.nextLine();
-
 		System.out.print("고객 이름 >> ");
 		String strBuName = scan.nextLine();
-
 		System.out.print("전화번호 >> ");
 		String strBuTel = scan.nextLine();
-
 		BuyerDto buyerDto = new BuyerDto();
 		buyerDto.buId = strBuId;
 		buyerDto.buName = strBuName;
 		buyerDto.buTel = strBuTel;
-
 		buyerService.insert(buyerDto);
 	}
 
@@ -88,7 +81,6 @@ public class BankService {
 		System.out.println("삭제할 고객 ID 입력하시오");
 		System.out.println("삭제할 고객 ID >> ");
 		String strBuId = scan.nextLine();
-
 		BuyerDto buyerDto = buyerService.findById(strBuId);
 		if (buyerDto == null) {
 			System.out.printf("%s 고객 ID 는 없는 정보 입니다", strBuId);
@@ -122,12 +114,12 @@ public class BankService {
 			System.out.printf("고객 ID : %s ", buyerDto.buId);
 			System.out.printf("고객 이름(%s)", buyerDto.buName);
 			String strBuName = scan.nextLine();
+			
 			if (!strBuName.equals(""))buyerDto.buName = strBuName;
-
 			System.out.printf("전화번호(%s)", buyerDto.buTel);
 			String strBuTel = scan.nextLine();
+			
 			if (!strBuTel.equals(""))buyerDto.buTel = strBuTel;
-
 			int result = buyerService.update(buyerDto);
 			if (result > 0)	System.out.println("변경 성공");
 			else System.out.println("변경 실패");
@@ -167,9 +159,8 @@ public class BankService {
 			for (AccDto accDto : accList) {
 				System.out.printf("%s\t", accDto.acNum);
 
-				int intDiv = 0;
 				try { // 문자열 통해서 계좌정보가 무엇인지 표시
-					intDiv = Integer.valueOf(accDto.acDiv);
+					int intDiv = Integer.valueOf(accDto.acDiv);
 					System.out.printf("%s\t", DBContract.ACC_DIV[intDiv - 1]);
 				} catch (Exception e) {
 					System.out.printf("%s\t", "종류불명");
@@ -213,6 +204,7 @@ public class BankService {
 //		}
 //		// 0 이거나 최대값을 가진다
 //		maxNum++;
+		
 		// 한줄의 코드로 정리하기 
 		int maxNum = Integer.valueOf(accService.maxAcNum(todayString)) + 1;
 		// 새로운 계좌번호 생성하기 
@@ -233,9 +225,106 @@ public class BankService {
 			System.out.print("2. 적금 계좌");
 			System.out.print("3. 대출 계좌");
 			String strAcc = scan.nextLine();
-			
-			
 		}
+	}
+	
+	public void insertAccList() {
+		this.printBuyerList();
+		System.out.print("고객 ID 를 입력 하세요 >> ");
+		String strBuId = scan.nextLine();
+		
+		BuyerDto buyerDto = buyerService.findById(strBuId); 
+
+		if (buyerDto == null) { 
+			System.out.println("고객 ID 정보가 없습니다.");
+			return;
+		} else {
+			System.out.println(Line.sLine(100));
+			System.out.printf("고객 ID : %s\n", buyerDto.buId);
+			System.out.printf("이름 : %s\n", buyerDto.buName);
+			System.out.printf("고객 전화번호 : %s\n", buyerDto.buTel);
+			System.out.printf("고객 주소 : %s\n", buyerDto.buAddr);
+			System.out.println(Line.sLine(100));
+		}
+
+		// 계좌리스트 보여줌
+		List<AccDto> accList = accService.findByBuId(strBuId); 
+		
+		if (accList.isEmpty()) {
+			System.out.println("고객의 계좌정보가 없습니다");
+			return;
+		} else {
+			System.out.println(Line.sLine(100));
+			System.out.println("계좌번호\t구분\t\t잔액");
+			System.out.println(Line.sLine(100));
+			
+			for (AccDto accDto : accList) {
+				System.out.printf("%s\t", accDto.acNum);
+				
+				int intDiv = 0;
+				try { 
+					intDiv = Integer.valueOf(accDto.acDiv);
+					System.out.printf("%s\t", DBContract.ACC_DIV[intDiv - 1]);
+				} catch (Exception e) {
+					System.out.printf("%s\t", "종류불명");
+				}
+				System.out.printf("%s\n", accDto.acBalance);
+			}
+			System.out.println(Line.sLine(100));
+		}
+		
+		AccListDto dto = new AccListDto();
+		System.out.print("거래하실 계좌를 입력하세요 >> ");
+		String strNum = scan.nextLine();
+		
+//		while(true) {
+//			System.out.println(Line.dLine(100));
+//			System.out.print("거래하실 내용을 선택 하세요 >> ");
+//			System.out.println(" 1 : 입금 ");
+//			System.out.println(" 2 : 출금 ");
+//			System.out.println(" 3 : 종료 ");
+//			System.out.println(Line.sLine(100));
+//			String aioSelet = scan.nextLine();
+//			
+//			int intSelet = 0;
+//			try {
+//				intSelet = Integer.valueOf(intSelet);
+//			} catch (Exception e) {
+//				System.out.println("거래하실 내용을 다시 선택해 주세요");
+//				continue;
+//			}
+//			if(intSelet == 3) {
+//				System.out.println("입출금 서비스를 종료 합니다.");
+//			}
+//		}
+//		
+//		AccDto accDto = accService.findById(strBuId);
+//		
+//		Date date = new Date(System.currentTimeMillis());
+//		SimpleDateFormat todayDate = new SimpleDateFormat("YYYYMMdd");
+//		String dateString = todayDate.format(date);
+//		SimpleDateFormat todayTime = new SimpleDateFormat("HH:mm:ss");
+//		String timeString = todayDate.format(date);
+//		
+//		while(true) {
+//			int aioInput = Integer.valueOf(dto.aioInput);
+//			if (accDto == null) {
+//				System.out.println("입금액이 없습니다 다시 입력하세요");
+//				return;
+//			} else {
+//				System.out.printf("입금액 : " , aioInput);
+//				
+//			} 
+//			
+//			if( aioSelet == null) {
+//				System.out.println(" 출금액이 없습니다 다시 입력하세요");
+//				return;
+//			} else {
+//				int aioOutPut =Integer.valueOf(dto.aioOutput);
+//				System.out.printf("출금액: ", aioOutPut);
+//			}
+//		}
+		
 		
 		
 		
@@ -243,4 +332,5 @@ public class BankService {
 		
 		
 	}
+	
 }
