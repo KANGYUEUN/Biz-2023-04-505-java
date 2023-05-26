@@ -17,7 +17,6 @@ import com.callor.bank.utils.Line;
 public class BankService2 {
 	
 	protected final Scanner scan;
-	
 	protected List<BuyerDto> buyerList;
 	protected final BuyerService buyerService;
 	protected final AccService accService;
@@ -27,7 +26,6 @@ public class BankService2 {
 		accService = new AccServiceImplV1();
 		buyerService = new BuyerServiceImplV1();
 		accListService = new AccListServiceImplV1();
-		
 		scan = new Scanner(System.in);
 	}
 	
@@ -230,7 +228,6 @@ public class BankService2 {
 		// 고객정보 확인
 		printBuyerList();
 		findUserInfo();
-
 		while(true) {
 			System.out.println(Line.sLine(100));
 			System.out.println("입출금 등록");
@@ -248,6 +245,7 @@ public class BankService2 {
 			}
 			System.out.print("거래구분(1:입금, 2:출금, -1:종료) >> ");
 			String aioDiv = scan.nextLine();
+			
 			int intDiv = 0;
 			try {
 				intDiv = Integer.valueOf(aioDiv);
@@ -255,18 +253,20 @@ public class BankService2 {
 				System.out.printf("선택이 잘못되었습니다( %s )", aioDiv);
 				continue;
 			}
+			
 			if(intDiv == -1) {
 				System.out.println("입출금 업무 중단");
 				break;
 			}
+			
 			if(intDiv != 1 && intDiv != 2) {
 				System.out.println("1:입금, 2:출금 중에서 선택하세요");
 				continue;
 			}
 			
 			String[] divs = {"입금","출금"};
-			int intAmt = 0;
 			
+			int intAmt = 0;
 			while(true) {
 				String prompt = divs[intDiv - 1];
 				System.out.printf("%s (QUIT:종료) >> ", prompt);

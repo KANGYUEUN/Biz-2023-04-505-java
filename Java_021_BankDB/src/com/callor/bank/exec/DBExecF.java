@@ -8,4 +8,5 @@ public class DBExecF {
 		BankService bankService = new BankService();
 		bankService.insertAccList();
 	}
+
 }
