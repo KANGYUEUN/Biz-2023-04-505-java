@@ -1,0 +1,12 @@
+-- 관리자로 로그인한 화면
+
+CREATE TABLESPACE shopingcart 
+DATAFILE 'C:/app/dataA.dbf'
+SIZE 1M AUTOEXTEND ON NEXT 1K;
+
+ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+CREATE USER shopingcart IDENTIFIED BY 12341234
+DEFAULT TABLESPACE shopingcart;
+
+GRANT DBA TO shopingcart;
+

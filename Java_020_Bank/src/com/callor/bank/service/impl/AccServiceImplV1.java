@@ -54,17 +54,8 @@ public class AccServiceImplV1 implements AccService{
 			// break;
 			if( buId == null) {
 				System.out.println("고객 ID를 입력하세요 ");
-				
-				
-				
 			}
 		}
-		
-		
-		
-		
-		
-		
 	}
 
 	@Override
@@ -90,7 +81,4 @@ public class AccServiceImplV1 implements AccService{
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-
 }
