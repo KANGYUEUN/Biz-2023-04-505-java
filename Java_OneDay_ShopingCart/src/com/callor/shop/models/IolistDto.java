@@ -9,7 +9,8 @@ public class IolistDto {
 	public String ioQuan; 	// NUMBER
 	public int ioPrice; 	// NUMBER
 
-	public IolistDto(long ioSEQ, String ioDate, String ioTime, int ioBuid, String ioPCode, String ioQuan, int ioPrice) {
+	public IolistDto(long ioSEQ, String ioDate, String ioTime, int ioBuid, 
+			String ioPCode, String ioQuan, int ioPrice) {
 		this.ioSEQ = ioSEQ;
 		this.ioDate = ioDate;
 		this.ioTime = ioTime;
@@ -26,7 +27,9 @@ public class IolistDto {
 
 	@Override
 	public String toString() {
-		return "IolistDto [ioSEQ=" + ioSEQ + ", ioDate=" + ioDate + ", ioTime=" + ioTime + ", ioBuid=" + ioBuid
-				+ ", ioPCode=" + ioPCode + ", ioQuan=" + ioQuan + ", ioPrice=" + ioPrice + "]";
+		return "IolistDto [ioSEQ=" + ioSEQ + ", ioDate=" + ioDate + ", "
+				+ "ioTime=" + ioTime + ", ioBuid=" + ioBuid
+				+ ", ioPCode=" + ioPCode + ", ioQuan=" + ioQuan + ", "
+						+ "ioPrice=" + ioPrice + "]";
 	}
 }

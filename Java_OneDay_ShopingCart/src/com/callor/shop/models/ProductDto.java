@@ -13,7 +13,8 @@ public class ProductDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDto(String pCode, String pName, String pItem, int pIPrice, int pOPrice) {
+	public ProductDto(String pCode, String pName, String pItem, 
+			int pIPrice, int pOPrice) {
 		this.pCode = pCode;
 		this.pName = pName;
 		this.pItem = pItem;
@@ -23,7 +24,8 @@ public class ProductDto {
 
 	@Override
 	public String toString() {
-		return "ProductDto [pCode=" + pCode + ", pName=" + pName + ", pItem=" + pItem + ", pIPrice=" + pIPrice
+		return "ProductDto [pCode=" + pCode + ", pName=" + pName + ", "
+				+ "pItem=" + pItem + ", pIPrice=" + pIPrice
 				+ ", pOPrice=" + pOPrice + "]";
 	}
 }
